@@ -13,41 +13,50 @@ Don't forget to add an actual set of image descriptions to your image carousel. 
 <html lang="en">
   <head>
     <title>Ethan Zovko's Labs for INST377</title>
+    <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
-    <h1>Ethan Zovko's Labs for INST377</h1>
+    <div class="header">
+      <h1>Ethan Zovko's Labs for INST377</h1>
+    </div>
 
-    <div>
-      <div id="left">
-        <h2>Album Names</h2>
-
-        <ol>
-          <li>BROCKHAMPTON - GINGER</li>
-          <li>Porter Robinson - Nurture</li>
-          <li>Japanese Breakfast - Jubilee</li>
-          <li>8485 - plague town</li>
-          <li>paranoid void - travels in my universe</li>
-        </ol>
-      </div>
-
-      <div id="right">
-        <h2>Image Carousel</h2>
-
-        <div>
-          <img src="images/mochi.gif" alt="A GIF Example Image of Mochi"/>
-          <img src="images/mochi.jpg" alt="A JPG Example Image of Mochi"/>
-          <img src="images/mochi.png" alt="A PNG Example Image of Mochi"/>
-          <img src="images/mochi.svg" alt="A SVG Example Image of Mochi"/>
+    <div class="wrapper">
+      <div class="container">
+        <div class="left_section">
+          <div class="">
+            <h2>Album Names</h2>
+            <ol class="box">
+              <li>BROCKHAMPTON - GINGER</li>
+              <li>Porter Robinson - Nurture</li>
+              <li>Japanese Breakfast - Jubilee</li>
+              <li>8485 - plague town</li>
+              <li>paranoid void - travels in my universe</li>
+            </ol>
+          </div>
         </div>
-
-        <div>
-          <p>Four Different Images of Mochi in Four Different Image Types</p>
+        
+        <div class="right_section">
+          <div class="box">
+            <h2>Image Carousel</h2>
+          
+            <div class="grid">
+              <img src="images/mochi.gif" alt="A GIF Example Image of Mochi"/>
+              <img src="images/mochi.jpg" alt="A JPG Example Image of Mochi"/>
+              <img src="images/mochi.png" alt="A PNG Example Image of Mochi"/>
+              <img src="images/mochi.svg" alt="A SVG Example Image of Mochi"/>
+            </div>
+          
+            <div class="box">
+              <p class="subtitle">Four Different Images of Mochi in Four Different Image Types</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <p>EZ-19 <a href='https://github.com/EZ-19'>EZ-19</a></p>
-
+    <div class="footer">
+      <p>EZ-19 <a href='https://github.com/EZ-19'>EZ-19</a></p>
+    </div>  
   </body>
 </html>
