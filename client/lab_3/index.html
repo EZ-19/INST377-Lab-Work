@@ -1,48 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <title>Ethan Zovko's Labs for INST377</title>
     <link rel="stylesheet" href="style.css">
-  </head>
-
-  <body>
+</head>
+<body>
     <div class="header">
-      <h1>Ethan Zovko's Labs for INST377</h1>
+    <h1>Ethan Zovko's Labs for INST377</h1>
     </div>
-
     <div class="wrapper">
-      <div class="container">
+        <div class="container">
         <div class="left_section box">
             <h2>Album Names</h2>
             <ol class="box">
-              <li>BROCKHAMPTON - GINGER</li>
-              <li>Porter Robinson - Nurture</li>
-              <li>Japanese Breakfast - Jubilee</li>
-              <li>8485 - plague town</li>
-              <li>paranoid void - travels in my universe</li>
+                <li>BROCKHAMPTON - GINGER</li>
+                <li>Porter Robinson - Nurture</li>
+                <li>Japanese Breakfast - Jubilee</li>
+                <li>8485 - plague town</li>
+                <li>paranoid void - travels in my universe</li>
             </ol>
         </div>
-        
+      
         <div class="right_section box">
             <h2>Image Carousel</h2>
-          
-            <div class="grid">
-              <img src="images/mochi.gif" alt="A GIF Example Image of Mochi"/>
-              <img src="images/mochi.jpg" alt="A JPG Example Image of Mochi"/>
-              <img src="images/mochi.png" alt="A PNG Example Image of Mochi"/>
-              <img src="images/mochi.svg" alt="A SVG Example Image of Mochi"/>
+        
+            <div class = "carousel">
+                <button class="prev">prev</button>
+                <div class="slides">
+                    <div class="carousel_item visible"><img src="images/cat1.jpg" alt="An image of a cat"/></div>
+                    <div class="carousel_item hidden"><img src="images/dog1.jpg" alt="An image of a dog"/></div>
+                    <div class="carousel_item hidden"><img src="images/cat2.jpg" alt="An image of a cat"/></div>
+                    <div class="carousel_item hidden"><img src="images/dog2.jpg" alt="An image of a dog"/></div>
+                </div>
+                <button class="next">next</button>
             </div>
-          
+
             <div class="box">
-              <p class="subtitle">Four Different Images of Mochi in Four Different Image Types</p>
+                <p class="subtitle">Four Different Images of Mochi in Four Different Image Types</p>
             </div>
         </div>
-      </div>
+        </div>
     </div>
-
     <div class="footer">
-      <h3>EZ-19 <a href='https://github.com/EZ-19'>EZ-19</a></h3>
+        <h3>EZ-19 <a href='https://github.com/EZ-19'>EZ-19</a></h3>
     </div>  
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
