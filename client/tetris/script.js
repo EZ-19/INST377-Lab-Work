@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Previews the next Tetromino
   const DISPLAY_SQUARES = document.querySelectorAll('.mini-grid div');
   const DISPLAY_WIDTH = 4;
-  let displayIndex = 0;
+  const displayIndex = 0;
 
   // Tetrominoes without rotations
   const upNextTetrominoes = [
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         row.forEach((index) => {
           squares[index].classList.remove('taken');
           squares[index].classList.remove('tetromino');
-          squares[index].classList.style.backgroundColor = '';
+          squares[index].style.backgroundColor = '';
         });
         const SQUARES_REMOVED = squares.splice(i, WIDTH);
         squares = SQUARES_REMOVED.concat(squares);
