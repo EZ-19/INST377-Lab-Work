@@ -93,6 +93,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Adds to score
+  function addScore() {
+    for (let i = 0; i < 199; i += WIDTH) {
+      const row = [i, i + 1, i + 2, i + 3, i + 4, i + 5, i + 6, i + 7, i + 8, i + 9];
+
+      if (row.every((index) => squares[index].classList.contains('taken'))) {
+        score += 10;
+        SCORE_DISPLAY.innerHTML = score;
+        row.forEach((index) => {
+          squares[index].classList.remove('taken');
+          squares[index].classList.remove('tetromino');
+        });
+        const SQUARES_REMOVED = squares.splice(i, WIDTH);
+        squares = SQUARES_REMOVED.concat(squares);
+        squares.forEach((cell) => GRID.appendChild(cell));
+      }
+    }
+  }
+
   // Freezes the Tetromino
   function freeze() {
     if (current.some((index) => squares[currentPosition + index + WIDTH].classList.contains('taken'))) {
@@ -104,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
       currentPosition = 4;
       draw();
       displayShape();
+      addScore();
     }
   }
 
