@@ -6,6 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const WIDTH = 10;
   let nextRandom = 0;
   let timerID;
+  const colors = [
+    'orange',
+    'red',
+    'purple',
+    'green',
+    'blue'
+  ];
 
   // The Tetriminoes
   const lTetromino = [
@@ -57,14 +64,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Draws the Tetromino
   function draw() {
     current.forEach((index) => {
-      squares[currentPosition + index].classList.add('tetromino')
+      squares[currentPosition + index].classList.add('tetromino');
+      squares[currentPosition + index].style.backgroundColor = colors[random];
     });
   }
 
   // Undraws the Tetromino
   function undraw() {
     current.forEach((index) => {
-      squares[currentPosition + index].classList.remove('tetromino')
+      squares[currentPosition + index].classList.remove('tetromino');
+      squares[currentPosition + index].style.backgroundColor = '';
     });
   }
 
@@ -86,10 +95,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function displayShape() {
     // Remove previous preview Tetromino
     DISPLAY_SQUARES.forEach((square) => {
-      square.classList.remove('tetromino')
+      square.classList.remove('tetromino');
+      square.style.backgroundColor = '';
     });
     upNextTetrominoes[nextRandom].forEach((index) => {
       DISPLAY_SQUARES[displayIndex + index].classList.add('tetromino');
+      DISPLAY_SQUARES[displayIndex + index].style.backgroundColor = colors[nextRandom];
     });
   }
 
@@ -104,11 +115,20 @@ document.addEventListener('DOMContentLoaded', () => {
         row.forEach((index) => {
           squares[index].classList.remove('taken');
           squares[index].classList.remove('tetromino');
+          squares[index].classList.style.backgroundColor = '';
         });
         const SQUARES_REMOVED = squares.splice(i, WIDTH);
         squares = SQUARES_REMOVED.concat(squares);
         squares.forEach((cell) => GRID.appendChild(cell));
       }
+    }
+  }
+
+  // Determine if there is a game over
+  function gameOver() {
+    if (current.some((index) => squares[currentPosition + index].classList.contains('taken'))) {
+      SCORE_DISPLAY.innerHTML = 'end';
+      clearInterval(timerID);
     }
   }
 
@@ -124,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
       draw();
       displayShape();
       addScore();
+      gameOver();
     }
   }
 
