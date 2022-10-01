@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const SCORE_DISPLAY = document.querySelector('#score');
   const START_BTN = document.querySelector('#start-button');
   const WIDTH = 10;
-
+  console.log(squares)
   // The Tetriminoes
   const lTetromino = [
     [1, WIDTH + 1, WIDTH * 2 + 1, 2],
@@ -63,7 +63,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  draw();
-  undraw();
-  draw();
+  // Freezes the Tetromino
+  function freeze() {
+    if (current.some((index) => squares[currentPosition + index + WIDTH].classList.contains('taken'))) {
+      current.forEach((index) => squares[currentPosition + index].classList.add('taken'));
+      // Make a new Tetromino fall
+      random = Math.floor(Math.random() * theTetrominoes.length);
+      current = theTetrominoes[random][currentRotation];
+      currentPosition = 4;
+    }
+  }
+
+  // Moves the Tetromino down
+  function moveDown() {
+    undraw();
+    currentPosition += WIDTH;
+    draw();
+    freeze();
+  }
+
+  // Move the Tetromino down every second
+  timerID = setInterval(moveDown, 1000);
 });
