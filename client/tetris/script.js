@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const START_BTN = document.querySelector('#start-button');
   const WIDTH = 10;
   let nextRandom = 0;
+  let timerID;
 
   // The Tetriminoes
   const lTetromino = [
@@ -154,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Move the Tetromino down every second
-  timerID = setInterval(moveDown, 1000);
+  // timerID = setInterval(moveDown, 1000);
 
   // Assigning functions to keycodes
   function control(e) {
@@ -168,6 +169,19 @@ document.addEventListener('DOMContentLoaded', () => {
       moveDown();
     }
   }
+
+  // Allows button to stop and start
+  START_BTN.addEventListener('click', () => {
+    if (timerID) {
+      clearInterval(timerID);
+      timerID = null;
+    } else {
+      draw();
+      timerID = setInterval(moveDown, 1000);
+      nextRandom = Math.floor(Math.random() * theTetrominoes.length);
+      displayShape();
+    }
+  });
 
   document.addEventListener('keyup', control);
 });
