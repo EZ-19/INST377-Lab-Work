@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const SCORE_DISPLAY = document.querySelector('#score');
   const START_BTN = document.querySelector('#start-button');
   const WIDTH = 10;
-  console.log(squares)
+
   // The Tetriminoes
   const lTetromino = [
     [1, WIDTH + 1, WIDTH * 2 + 1, 2],
@@ -82,6 +82,58 @@ document.addEventListener('DOMContentLoaded', () => {
     freeze();
   }
 
+  // Moves the Tetromino left
+  function moveLeft() {
+    undraw();
+    const IS_LEFT_EDGE = current.some((index) => (currentPosition + index) % WIDTH === 0);
+
+    if (!IS_LEFT_EDGE) currentPosition -= 1;
+
+    if (current.some((index) => squares[currentPosition + index].classList.contains('taken'))) {
+      currentPosition += 1;
+    }
+
+    draw();
+  }
+
+  // Moves the Tetromino right
+  function moveRight() {
+    undraw();
+    const IS_RIGHT_EDGE = current.some((index) => (currentPosition + index) % WIDTH === WIDTH - 1);
+
+    if (!IS_RIGHT_EDGE) currentPosition += 1;
+
+    if (current.some((index) => squares[currentPosition + index].classList.contains('taken'))) {
+      currentPosition -= 1;
+    }
+
+    draw();
+  }
+
+  function rotate() {
+    undraw();
+    currentRotation += 1;
+    if (currentRotation === current.length) {
+      currentRotation = 0;
+    }
+    current = theTetrominoes[random][currentRotation]
+    draw();
+  }
+
   // Move the Tetromino down every second
   timerID = setInterval(moveDown, 1000);
+
+  // Assigning functions to keycodes
+  function control(e) {
+    if (e.keyCode === 37) {
+      moveLeft();
+    } else if (e.keyCode === 38) {
+      rotate();
+    } else if (e.keyCode === 39) {
+      moveRight();
+    } else if (e.keyCode === 40) {
+      moveDown();
+    }
+  }
+  document.addEventListener('keyup', control)
 });
