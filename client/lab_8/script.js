@@ -93,6 +93,23 @@ function initMap() {
   return map;
 }
 
+function markerPlace(array, map) {
+  console.log('markerPlace', array);
+  map.eachLayer((layer) => {
+    if (layer instanceof L.Marker) {
+      layer.remove();
+    }
+  });
+
+  array.forEach((item, index) => {
+    const {coordinates} = item.geocoded_column_1;
+    L.marker([coordinates[1], coordinates[0]]).addTo(map);
+    if (index === 0) {
+      map.setView([coordinates[1], coordinates[0]], 10);
+    }
+  });
+}
+
 async function mainEvent() {
   /*
       ## Main Event
@@ -134,7 +151,7 @@ async function mainEvent() {
 
   // This IF statement ensures we can't do anything if we don't have information yet
   if (!arrayFromJson.data?.length) { return; } // Return if we have no data
-  
+
   let currentList = [];
 
   // let's turn the submit button back on by setting it to display as a block when we have data available
@@ -148,7 +165,8 @@ async function mainEvent() {
     console.log('input', event.target.value);
     const newFilterList = filterList(currentList, event.target.value);
     injectHTML(newFilterList);
-  })
+    markerPlace(newFilterList, pageMap);
+  });
 
   // And here's an eventListener! It's listening for a "submit" button specifically being clicked
   // this is a synchronous event event, because we already did our async request above, and waited for it to resolve
@@ -162,6 +180,7 @@ async function mainEvent() {
 
     // And this function call will perform the "side effect" of injecting the HTML list for you
     injectHTML(currentList);
+    markerPlace(currentList, pageMap);
     // By separating the functions, we open the possibility of regenerating the list
     // without having to retrieve fresh data every time
     // We also have access to some form values, so we could filter the list based on name
